@@ -5,7 +5,7 @@
 >官网：http://greenrobot.org/greendao/   
 >版本：V2.2.1 Bug fix release (2016-05-24)  
 >说明：主要内容均翻译自官网最新的开发文档  
->博客地址：http://blog.csdn.net/kevindgk  
+>博客地址：http://blog.csdn.net/kevindgk/article/details/51833707    
 >GitHub地址：https://github.com/KevinDGK/GreenDAODemo  
 >版权声明：本文为原创文章，未经允许不得转载  
 
