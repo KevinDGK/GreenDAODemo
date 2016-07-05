@@ -3,6 +3,7 @@ package com.dgk.greendaodemo;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,14 +11,12 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-import java.util.TreeMap;
 
 import de.greenrobot.dao.Student;
 import de.greenrobot.dao.StudentDao;
@@ -40,7 +39,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private ListView lv;
 
-    private Cursor cursor;
     private List<Student> list;
     private MyLVAdapter adapter;
 
@@ -83,10 +81,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
 
-    private void initData() {
-
-
-    }
+    private void initData() {}
 
     @Override
     public void onClick(View v) {
@@ -113,7 +108,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 deleteOne();
                 break;
 
-            case R.id.btn_delete_all:// 删除一条数据
+            case R.id.btn_delete_all:// 删除所有数据
                 deleteAll();
                 break;
 
@@ -122,11 +117,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     /** 清除数据 */
     private void clear() {
-
         et_name.setText("");
         et_id.setText("");
         et_phone.setText("");
-
         et_name.requestFocus();
     }
 
@@ -134,16 +127,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void submit() {
 
         String name = et_name.getText().toString().trim();
+
+        if (TextUtils.isEmpty(name)) {
+
+        }
+
         String stuId = et_id.getText().toString().trim();
         String phone = et_phone.getText().toString().trim();
 
         Student student = new Student(null, name, stuId, phone, new Date());
 
-        /*
-            数据库里的一条记录对应着一个Java对象，所以插入操作，仅仅需要插入一个对象即可。
-         */
+        //数据库里的一条记录对应着一个Java对象，所以插入操作，仅仅需要插入一个对象即可。
         DBUtil.getStudentDao().insert(student);
-
         Log.d("【submit】", "Inserted new student, ID: " + student.getId() + " , Name："+name);
     }
 
@@ -155,7 +150,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             String number = StudentDao.Properties.Number.columnName;
             String orderBy = number + " COLLATE LOCALIZED ASC"; // 按照学号的升序排列
 
-            该方法是调用数据库SQLiteDatabase的query()方法来进行查询的，比较繁琐
+            该方法是调用数据库SQLiteDatabase的query()方法来进行查询的，比较繁琐，但是说明也是执行SQL语句的
             cursor = DBUtil.getDB().query(tablename, DBUtil.getStudentDao().getAllColumns(), null, null, null, null, orderBy);
 
             String[] from = { name , number };
@@ -239,11 +234,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         Log.i("【删除数据库所有数据】"," ======== 清空了~~~ ========= ");
         DBUtil.getStudentDao().deleteAll();
-        list.clear();
-        if (adapter != null) {
+        if ((list != null) && (adapter != null)) {
+            list.clear();
             adapter.notifyDataSetChanged();
         }
     }
+
+
 
     private class MyLVAdapter extends BaseAdapter {
 

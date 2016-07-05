@@ -24,10 +24,12 @@ public class DBUtil {
         一般情况下，为了安全，数据库创建在/data/data/包名/databases目录下即可，但是demo中为了随时将
         数据库从手机中取出，查看数据库的数据，所以暂时将数据库建立在sd卡中。
      */
-    private static String dbName = Environment.getExternalStorageDirectory().getPath()
-            + File.separator + "com.dgk.greendaodemo"
-            + File.separator + "db"
-            + File.separator + "demo.db";
+//    private static String dbName = Environment.getExternalStorageDirectory().getPath()
+//            + File.separator + "com.dgk.greendaodemo"
+//            + File.separator + "db"
+//            + File.separator + "demo.db";
+
+    private static String dbName = "demo.db"; // 实际开发的时候的数据库的位置
 
     /**
      * 初始化数据库
