@@ -235,6 +235,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Log.i("【删除数据库所有数据】"," ======== 清空了~~~ ========= ");
         DBUtil.getStudentDao().deleteAll();
         if ((list != null) && (adapter != null)) {
+            Log.i("【删除数据库所有数据】"," ======== 刷新界面 ========= ");
             list.clear();
             adapter.notifyDataSetChanged();
         }

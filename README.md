@@ -190,6 +190,19 @@ GreenDAO是一个开放的安卓代码库，来提供一个容易使用的SQLite
 1.	所有的预生成代码都是由分离的Java模块生成的，在3.x中将会有较大的改善；  
 2.	所有的对数据库的操作都是在Android项目中的，详细看demo中的MainActivity.java.  
 
+## 介绍  
+![](http://i.imgur.com/Z8BdyFF.png)  
+greenDAO是一个安卓的ORM工具，它提供了一个类面向对象的接口，将Object映射到关系数据库中。ORM工具如greenDAO做很多重复性的工作为你和为你提供一个简单的接口数据。  
+
+## 代码生成工程  
+![](http://i.imgur.com/FuqZ9pv.png)  
+为了在你的Android项目使用greenDAO(通常是一个Eclipse项目),您需要创建一个项目,generator项目。它的任务就是为你的安卓项目生成特定的代码。
+
+## 核心类  
+![](http://i.imgur.com/pRT6SZQ.png)  
+
+
+
 ## 问题
 ### 1.关于数据库创建的位置
 一般情况下，为了安全，数据库创建在/data/data/包名/databases目录下即可，但是demo中为了随时将数据库从手机中取出，查看数据库的数据，所以暂时将数据库建立在sd卡中。  
